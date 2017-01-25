@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('#{$font-path}/fontawesome-webfont.eot');
+    src: url('#{$font-path}/fontawesome-webfont.eot') format('embedded-opentype'),
+    url('#{$font-path}/fontawesome-webfont.woff2') format('woff2'),
+    url('#{$font-path}/fontawesome-webfont.woff') format('woff'),
+    url('#{$font-path}/fontawesome-webfont.ttf') format('truetype'),
+    url('#{$font-path}/fontawesome-webfont.svg?fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^='#{$fa-css-prefix}-'] {@include fa-icon(); font-size: $fa-css-size;}
+.#{$fa-css-prefix}-bars:before {content: '\f0c9';}
+.#{$fa-css-prefix}-search:before {content: '\f002';}
+.#{$fa-css-prefix}-shopping-cart:before {content: '\f07a';}
+.#{$fa-css-prefix}-cart-plus:before {content: '\f217';}

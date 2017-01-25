@@ -1,0 +1,46 @@
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+img,
+small, strong, sub, sup,
+b, i,
+ol, ul, li,
+form, label,
+table, tbody, tfoot, thead, tr, th, td,
+footer, header, menu, nav, section,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+body {
+    line-height:1;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display: block;
+}
+nav ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+
+    &:before, &:after {
+        content: '';
+        content: none;
+    }
+}
+a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+input, select {
+    vertical-align: middle;
+}

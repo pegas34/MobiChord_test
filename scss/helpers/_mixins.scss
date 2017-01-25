@@ -1,0 +1,16 @@
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+@mixin fa-icon() {
+    display: inline-block;
+    font: normal normal normal #{$fa-css-size}/#{$fa-css-height} FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

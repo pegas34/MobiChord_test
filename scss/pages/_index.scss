@@ -1,0 +1,16 @@
+html,
+body {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    font-weight: 300;
+}
+.bold {
+    font-weight: 500;
+}
+header {
+    background-color: $raven;
+
+    [class^='#{$fa-css-prefix}-'] {
+        color: $white;
+    }
+}
