@@ -35,5 +35,7 @@ app.controller('MainController', function($scope) {
             .addClass('disabled')
             .attr('disabled', 'disabled');
         $scope.products[index].cardTxt = 'In card';
-    }
+        $scope.cartCount += 1;
+    };
+    $scope.cartCount = 0;
 });

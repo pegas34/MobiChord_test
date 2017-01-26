@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="myApp">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 </head>
 
-<body data-ng-app="myApp">
+<body data-ng-controller="MainController">
 
 <header>
     <nav>
@@ -27,11 +27,12 @@
     </div>
     <div class="shopping-cart">
         <span class="fa-shopping-cart"></span>
+        <span class="cart-count">{{ cartCount }}</span>
     </div>
 </header>
 
 
-<section class="models-list" data-ng-controller="MainController">
+<section class="models-list">
     <div class="model-block" data-ng-repeat="(pIndex, product) in products">
         <div class="model-info">
             <a href="">

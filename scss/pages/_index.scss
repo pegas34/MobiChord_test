@@ -52,6 +52,18 @@ header {
         top: 14px;
         right: 35px;
         cursor: pointer;
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -9px;
+            display: inline-block;
+            padding: 1px 5px;
+            background-color: $tahiti-gold;
+            color: $white;
+            font-size: 11px;
+            border-radius: 10px;
+        }
     }
 }
 .models-list {
@@ -125,6 +137,9 @@ header {
         }
         &:hover {
             background-color: darken($tahiti-gold, 10%);
+        }
+        &.disabled{
+            background-color: $raven;
         }
     }
     .model-stock {
