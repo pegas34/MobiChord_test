@@ -27,7 +27,9 @@
     </div>
     <div class="shopping-cart">
         <span class="fa-shopping-cart"></span>
-        <span class="cart-count">{{ cartCount }}</span>
+        <span class="cart-count dnone">{{ cartCount }}</span>
+        <div class="">
+        </div>
     </div>
 </header>
 
@@ -44,7 +46,7 @@
             </ul>
         </div>
         <div class="model-price">
-            Price: <span>{{ product.price | currency }}</span> + {{ product.shipping | currency }} shipping
+            Price: <span>{{ ::product.price | currency }}</span> + {{ ::product.shipping | currency }} shipping
         </div>
         <p class="model-cart">
             <button data-ng-click="addCard($index, $event)">
@@ -53,7 +55,7 @@
             </button>
         </p>
         <div class="model-stock">
-            Only <span class="stock-count">{{ ::product.left }}</span> left in stock
+            Only <span class="stock-count">{{ product.left }}</span> left in stock
         </div>
     </div>
 </section>

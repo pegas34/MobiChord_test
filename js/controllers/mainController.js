@@ -29,13 +29,28 @@ app.controller('MainController', function($scope) {
             cardTxt: 'Add to cart'
         }
     ];
+    $scope.productsInCard = [];
+    $scope.cartCount = 0;
 
     $scope.addCard = function(index, $event) {
         angular.element($event.target)
             .addClass('disabled')
             .attr('disabled', 'disabled');
         $scope.products[index].cardTxt = 'In card';
+        $scope.products[index].left -= 1;
+        angular.element(document.querySelector('.cart-count'))
+            .removeClass('dnone');
         $scope.cartCount += 1;
+        $scope.addProductInCard(index);
     };
-    $scope.cartCount = 0;
+
+    $scope.addProductInCard = function(index) {
+        $scope.item = {};
+        $scope.item.index = index;
+        $scope.item.image = $scope.products[index].image;
+        $scope.item.name = $scope.products[index].name;
+        $scope.item.price = $scope.products[index].price;
+        $scope.item.shipping = $scope.products[index].shipping;
+        $scope.productsInCard.push($scope.item);
+    }
 });
