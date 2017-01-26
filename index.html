@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 </head>
 
-<body>
+<body data-ng-app="myApp">
 
 <header>
     <nav>
@@ -30,34 +31,34 @@
 </header>
 
 
-<section class="models-list">
-    <div class="model-block">
+<section class="models-list" data-ng-controller="MainController">
+    <div class="model-block" data-ng-repeat="(pIndex, product) in products">
         <div class="model-info">
-            <a href="#">
-                <img src="img/iphone1.jpg" alt="" />
-                <b>Apple IPhone 5S 16GB (Space Gray)</b>
+            <a href="">
+                <img data-ng-src="{{ ::product.image }}" alt="" />
+                <b>{{ ::product.name }}</b>
             </a>
             <ul>
-                <li>4-inch Retina display</li>
-                <li>A7 chip with M2 motion compressor</li>
-                <li>Touch ID fingerprint sensor</li>
-                <li>New 8MP iSight camera with True Tone flash and 1080p HD video recording</li>
+                <li data-ng-repeat="pInfo in ::products[pIndex].infoList">{{ pInfo.info }}</li>
             </ul>
         </div>
         <div class="model-price">
-            Price: <span>$680.99</span> + $12.99 shipping
+            Price: <span>{{ product.price | currency }}</span> + {{ product.shipping | currency }} shipping
         </div>
         <p class="model-cart">
-            <button>
+            <button data-ng-click="addCard($index, $event)">
                 <span class="fa-cart-plus"></span>
-                Add to cart
+                {{ product.cardTxt }}
             </button>
         </p>
         <div class="model-stock">
-            Only <span class="stock-count">9</span> left in stock
+            Only <span class="stock-count">{{ ::product.left }}</span> left in stock
         </div>
     </div>
 </section>
+
+<script src="js/app.js"></script>
+<script src="js/controllers/MainController.js"></script>
 
 </body>
 </html>
