@@ -1,6 +1,6 @@
 html,
 body {
-    font-size: 13px;
+    font-size: 15px;
     font-family: Arial, sans-serif;
     font-weight: 300;
 }
@@ -8,9 +8,131 @@ body {
     font-weight: 500;
 }
 header {
+    height: 50px;
+    padding: 10px;
     background-color: $raven;
+    box-sizing: border-box;
+    position: relative;
 
     [class^='#{$fa-css-prefix}-'] {
         color: $white;
+    }
+    nav {
+        width: 150px;
+        margin: 4px 0 0 3px;
+        cursor: pointer;
+
+        ul {
+            display: none;
+        }
+    }
+    .search {
+        position: absolute;
+        top: 12px;
+        right: 85px;
+
+        input {
+            width: 160px;
+            border: none;
+            font-size: 15px;
+            padding: 5px 5px 5px 28px;
+            border-radius: 10px;
+            outline: none;
+        }
+        span {
+            position: absolute;
+            top: 4px;
+            left: 5px;
+            font-size: 17px;
+            color: lighten($raven, 25%);
+        }
+    }
+    .shopping-cart {
+        position: absolute;
+        top: 14px;
+        right: 35px;
+        cursor: pointer;
+    }
+}
+.models-list {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 25px 30px;
+}
+.model-block {
+    border: 1px solid lighten($raven, 25%);
+    border-radius: 5px;
+    padding: 20px;
+    color: $raven;
+    position: relative;
+
+    b {
+        font-size: 17px;
+    }
+    ul {
+        padding: 0 0 0 30px;
+    }
+    .model-info {
+        @include clearfix();
+        padding: 0 130px;
+
+        a {
+            text-decoration: none;
+            color: $raven;
+
+            &:hover {
+                color: darken($raven, 10%);
+                text-decoration: underline;
+            }
+        }
+        img {
+            float: left;
+            margin: 0 0 0 -130px;
+            width: 100px;
+        }
+    }
+    .model-price {
+        @include clearfix();
+        margin: 0 0 -15px 0;
+        padding: 5px 0 0;
+
+        span {
+            font-size: 18px;
+            color: $dark-red;
+            font-weight: bold;
+        }
+    }
+    .model-cart {
+        text-align: right;
+    }
+    button {
+        padding: 8px 40px 8px 67px;
+        border: 0;
+        border-radius: 4px;
+        background-color: $tahiti-gold;
+        font-size: 17px;
+        color: $white;
+        font-weight: 600;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+
+        span {
+            position: absolute;
+            top: 6px;
+            left: 20px;
+        }
+        &:hover {
+            background-color: darken($tahiti-gold, 10%);
+        }
+    }
+    .model-stock {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 17px;
+        color: $bilbao;
+
+        .stock-count {}
     }
 }

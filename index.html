@@ -2,10 +2,11 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Test shop</title>
-    <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/style.min.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
@@ -21,7 +22,7 @@
     </nav>
     <div class="search">
         <span class="fa-search"></span>
-        <input type="text" value="" title=""/>
+        <input type="text" value="" title="" placeholder="Search" />
     </div>
     <div class="shopping-cart">
         <span class="fa-shopping-cart"></span>
@@ -29,9 +30,32 @@
 </header>
 
 
-<section class="block-top">
-    <div class="block-top-in">
-
+<section class="models-list">
+    <div class="model-block">
+        <div class="model-info">
+            <a href="#">
+                <img src="img/iphone1.jpg" alt="" />
+                <b>Apple IPhone 5S 16GB (Space Gray)</b>
+            </a>
+            <ul>
+                <li>4-inch Retina display</li>
+                <li>A7 chip with M2 motion compressor</li>
+                <li>Touch ID fingerprint sensor</li>
+                <li>New 8MP iSight camera with True Tone flash and 1080p HD video recording</li>
+            </ul>
+        </div>
+        <div class="model-price">
+            Price: <span>$680.99</span> + $12.99 shipping
+        </div>
+        <p class="model-cart">
+            <button>
+                <span class="fa-cart-plus"></span>
+                Add to cart
+            </button>
+        </p>
+        <div class="model-stock">
+            Only <span class="stock-count">9</span> left in stock
+        </div>
     </div>
 </section>
 

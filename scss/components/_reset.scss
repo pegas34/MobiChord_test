@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 img,
 small, strong, sub, sup,
 b, i,
-ol, ul, li,
+ol, li,
 form, label,
 table, tbody, tfoot, thead, tr, th, td,
 footer, header, menu, nav, section,
@@ -17,14 +17,11 @@ time, mark, audio, video {
     background: transparent;
 }
 body {
-    line-height:1;
+    line-height: 1.3;
 }
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section {
     display: block;
-}
-nav ul {
-    list-style: none;
 }
 blockquote, q {
     quotes: none;
