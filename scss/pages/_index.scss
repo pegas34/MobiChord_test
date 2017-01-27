@@ -40,7 +40,12 @@ header {
             font-size: 15px;
             padding: 5px 5px 5px 28px;
             border-radius: 10px;
+            transition: 0.5s all;
             outline: none;
+
+            &:focus {
+                width: 210px;
+            }
         }
         span {
             position: absolute;
@@ -55,18 +60,28 @@ header {
         top: 14px;
         right: 35px;
         cursor: pointer;
-
-        .cart-count {
-            position: absolute;
-            top: -6px;
-            right: -9px;
-            display: inline-block;
-            padding: 1px 5px;
-            background-color: $tahiti-gold;
-            color: $white;
-            font-size: 11px;
-            border-radius: 10px;
-        }
+    }
+    .cart-count {
+        position: absolute;
+        top: -6px;
+        right: -9px;
+        display: inline-block;
+        padding: 1px 5px;
+        background-color: $tahiti-gold;
+        color: $white;
+        font-size: 11px;
+        border-radius: 10px;
+    }
+    .cart-products {
+        position: absolute;
+        right: 0;
+        width: 320px;
+        z-index: 1;
+        background-color: $white;
+        border: 1px solid $raven;
+        padding: 15px;
+        box-shadow: 2px 3px 4px rgba($raven, 0.5);
+        box-sizing: border-box;
     }
 }
 .models-list {

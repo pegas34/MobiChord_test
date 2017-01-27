@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 </head>
 
-<body data-ng-controller="MainController">
+<body data-ng-controller="mainController">
 
 <header>
     <nav>
@@ -23,19 +23,29 @@
     </nav>
     <div class="search">
         <span class="fa-search"></span>
-        <input type="text" value="" title="" placeholder="Search" />
+        <input type="text" value="" title="" placeholder="Search" data-ng-model="search" />
     </div>
     <div class="shopping-cart">
         <span class="fa-shopping-cart"></span>
         <span class="cart-count dnone">{{ cartCount }}</span>
-        <div class="">
+        <div class="cart-products">
+            <div class="model-block2" data-ng-repeat="(pIndex, productInCard) in productsInCard">
+                <div class="model-info">
+                    <img data-ng-src="{{ ::productInCard.image }}" alt="" />
+                    <b>{{ ::productInCard.name }}</b>
+                </div>
+                <div class="model-price">
+                    Price: <span>{{ ::productInCard.price | currency }}</span> + {{ ::productInCard.shipping | currency }} shipping
+                </div>
+                <span data-ng-click="delCard($index)">X</span>
+            </div>
         </div>
     </div>
 </header>
 
-
 <section class="models-list">
-    <div class="model-block" data-ng-repeat="(pIndex, product) in products">
+
+    <div class="model-block" data-ng-repeat="(pIndex, product) in products | filter:search">
         <div class="model-info">
             <a href="">
                 <img data-ng-src="{{ ::product.image }}" alt="" />
@@ -49,7 +59,8 @@
             Price: <span>{{ ::product.price | currency }}</span> + {{ ::product.shipping | currency }} shipping
         </div>
         <p class="model-cart">
-            <button data-ng-click="addCard($index, $event)">
+            <button data-ng-click="addCard($index)" data-ng-class="product.classButton"
+                    data-ng-disabled="product.disabled">
                 <span class="fa-cart-plus"></span>
                 {{ product.cardTxt }}
             </button>
@@ -58,10 +69,11 @@
             Only <span class="stock-count">{{ product.left }}</span> left in stock
         </div>
     </div>
+
 </section>
 
 <script src="js/app.js"></script>
-<script src="js/controllers/MainController.js"></script>
+<script src="js/controllers/mainController.js"></script>
 
 </body>
 </html>
