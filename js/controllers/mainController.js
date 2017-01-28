@@ -49,14 +49,15 @@ app.controller('mainController', function($scope) {
     };
 
     $scope.addProductInCard = function(index) {
-        $scope.item          = {};
-        $scope.item.index    = index;
-        $scope.item.image    = $scope.products[index].image;
-        $scope.item.name     = $scope.products[index].name;
-        $scope.item.price    = $scope.products[index].price;
-        $scope.item.shipping = $scope.products[index].shipping;
+        var item      = {};
 
-        $scope.productsInCard.push($scope.item);
+        item.index    = index;
+        item.image    = $scope.products[index].image;
+        item.name     = $scope.products[index].name;
+        item.price    = $scope.products[index].price;
+        item.shipping = $scope.products[index].shipping;
+
+        $scope.productsInCard.push(item);
     };
 
     $scope.delCard = function(index) {
@@ -73,12 +74,24 @@ app.controller('mainController', function($scope) {
         }
         $scope.productsInCard.splice(index, 1);
     };
-/*
-    $scope.search = function(product){
-        if (!$scope.searchInput || (product.name.indexOf($scope.searchInput) != -1) || (product.infoList.info.indexOf($scope.searchInput) != -1) ){
+
+    $scope.search = function(product) {
+        var productInfoList = arrayObjectToString(product.infoList);
+
+        if (!$scope.searchInput || product.name.indexOf($scope.searchInput) != -1 || productInfoList.indexOf($scope.searchInput) != -1) {
             return true;
         }
+
         return false;
     };
-*/
+
+    var arrayObjectToString = function (array) {
+        var itemString = '';
+
+        for (var i = 0; i < array.length; i++) {
+            itemString += array[i].info.toString() + ' ';
+        }
+
+        return itemString;
+    };
 });
