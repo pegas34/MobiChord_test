@@ -87,6 +87,7 @@ header {
         box-sizing: border-box;
     }
     .model-block-card {
+        padding-bottom: 15px;
         color: $raven;
         position: relative;
 
@@ -104,30 +105,88 @@ header {
         p {
             margin-top: 5px;
             font-size: 13px;
+            user-select: none;
+        }
+        .count {
+            width: 30px;
+            padding: 2px 4px;
+            border: 1px solid lighten($raven, 30%);
+            border-radius: 2px;
+            color: $raven;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .fa-minus,
+        .fa-plus {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            font-size: 15px;
+            line-height: 20px;
+            text-align: center;
+            color: lighten($bilbao, 10%);
+            vertical-align: middle;
+            opacity: 0.5;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 1;
+            }
+            &.disabled {
+                color: lighten($raven, 35%);
+                opacity: 0.5;
+                cursor: default;
+            }
         }
         .price {
             font-size: 15px;
             color: $dark-red;
             font-weight: bold;
         }
-        &:not(:last-child) {
-            padding-bottom: 15px;
-            border-bottom: 1px solid lighten($raven, 25%);
-        }
-        &:not(:first-child) {
-            margin-top: 15px;
-        }
         .fa-remove {
             position: absolute;
-            top: 2px;
+            top: 0;
             right: 0;
+            width: 16px;
+            height: 16px;
             opacity: 0.5;
             color: $dark-red;
+            line-height: 16px;
             cursor: pointer;
 
             &:hover {
                 opacity: 1;
             }
+        }
+        &:not(:first-child) {
+            padding-top: 15px;
+            border-top: 1px solid lighten($raven, 25%);
+
+            .fa-remove {
+                top: 15px;
+            }
+        }
+    }
+    .cart-total {
+        text-align: center;
+        position: relative;
+        padding-top: 15px;
+
+        .price {
+            font-size: 15px;
+            color: $dark-red;
+            font-weight: bold;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background-color: lighten($raven, 25%);
+            font-size: 0;
+            line-height: 0;
         }
     }
 }

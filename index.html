@@ -33,11 +33,17 @@
                     <img data-ng-src="{{ ::productInCard.image }}" alt="" />
                     <b data-ng-bind="::productInCard.name"></b>
                     <p>
-                        <span class="price" data-ng-bind="::productInCard.price | currency"></span> + <span data-ng-bind="::productInCard.shipping | currency"></span> shipping
+                        <span class="fa-minus" data-ng-class="productInCard.classMinus" data-ng-click="countMinus($index)"></span>
+                        <input type="text" class="count" title="" data-ng-value="productInCard.countProduct" min="1" max="99" readonly="readonly" />
+                        <span class="fa-plus" data-ng-class="productInCard.classPlus" data-ng-click="countPlus($index)"></span>
+                    </p>
+                    <p>
+                        <span class="price" data-ng-bind="productInCard.price * productInCard.countProduct | currency"></span> + <span data-ng-bind="::productInCard.shipping | currency"></span> shipping
                     </p>
                 </div>
                 <span class="fa-remove" data-ng-click="delCard($index)"></span>
             </div>
+            <p class="cart-total">Total: <span class="price" data-ng-bind="cartTotal | currency"></span></p>
         </div>
     </div>
 </header>
