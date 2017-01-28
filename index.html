@@ -26,17 +26,17 @@
     </div>
     <div class="shopping-cart">
         <span class="fa-shopping-cart"></span>
-        <span class="cart-count dnone" data-ng-bind="cartCount"></span>
-        <div class="cart-products">
-            <div class="model-block2" data-ng-repeat="productInCard in productsInCard">
+        <span class="cart-count" data-ng-bind="cartCount" data-ng-if="productsInCard.length != 0"></span>
+        <div class="cart-products" data-ng-if="productsInCard.length != 0">
+            <div class="model-block-card" data-ng-repeat="productInCard in productsInCard">
                 <div class="model-info">
                     <img data-ng-src="{{ ::productInCard.image }}" alt="" />
                     <b data-ng-bind="::productInCard.name"></b>
+                    <p>
+                        <span class="price" data-ng-bind="::productInCard.price | currency"></span> + <span data-ng-bind="::productInCard.shipping | currency"></span> shipping
+                    </p>
                 </div>
-                <div class="model-price">
-                    Price: <span data-ng-bind="::productInCard.price | currency"></span> + <span data-ng-bind="::productInCard.shipping | currency"></span> shipping
-                </div>
-                <span data-ng-click="delCard($index)">X</span>
+                <span class="fa-remove" data-ng-click="delCard($index)"></span>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
             </ul>
         </div>
         <div class="model-price">
-            Price: <span data-ng-bind="::product.price | currency"></span> + <span data-ng-bind="::product.shipping | currency"></span> shipping
+            Price: <span class="price" data-ng-bind="::product.price | currency"></span> + <span data-ng-bind="::product.shipping | currency"></span> shipping
         </div>
         <p class="model-cart">
             <button data-ng-click="addCard($index)" data-ng-class="product.classButton"
@@ -77,7 +77,7 @@
 
 </section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="js/angular.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/controllers/mainController.js"></script>
 

@@ -42,8 +42,6 @@ app.controller('mainController', function($scope) {
         $scope.products[index].cardTxt     = 'In card';
         $scope.products[index].left       -= 1;
         $scope.cartCount                  += 1;
-        angular.element(document.querySelector('.cart-count'))
-            .removeClass('dnone');
 
         $scope.addProductInCard(index);
     };
@@ -68,10 +66,6 @@ app.controller('mainController', function($scope) {
         $scope.products[productIndex].disabled    = false;
         $scope.products[productIndex].left       += 1;
         $scope.cartCount                         -= 1;
-        if ($scope.cartCount == 0) {
-            angular.element(document.querySelector('.cart-count'))
-                .addClass('dnone');
-        }
         $scope.productsInCard.splice(index, 1);
     };
 
