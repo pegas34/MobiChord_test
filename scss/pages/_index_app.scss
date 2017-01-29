@@ -67,7 +67,22 @@
     }
 }
 @media screen and (max-width: 350px) {
-    header .cart-products {
-        width: 270px;
+    header {
+        .shopping-cart {
+            right: 20px;
+        }
+        .search {
+            right: 60px;
+
+            input:focus {
+                width: 160px;
+            }
+        }
+        .cart-products {
+            width: 300px;
+        }
+    }
+    .models-list {
+        padding: 70px 15px 25px;
     }
 }

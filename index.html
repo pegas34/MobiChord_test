@@ -12,12 +12,12 @@
 <body data-ng-app="myApp" data-ng-controller="mainController">
 
 <header>
-    <nav>
-        <span class="fa-bars"></span>
+    <nav data-ng-class="showMenu ? 'show-menu' : 'hide-menu'">
+        <span class="fa-bars" data-ng-click="showMenu = !showMenu"></span>
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="">News</a></li>
-            <li><a href="" class="active">Products</a></li>
+            <li><a href="" class="active">Smartphones</a></li>
             <li><a href="">Contacts</a></li>
         </ul>
     </nav>
@@ -26,24 +26,24 @@
         <input type="text" value="" title="" placeholder="Search by name or info" data-ng-model="searchInput" />
     </div>
     <div class="shopping-cart" data-ng-mouseenter="stopHide()" data-ng-mouseleave="startHide()">
-        <span class="cart-count" data-ng-bind="cartCount" data-ng-click="openCard()" data-ng-if="productsInCard.length != 0"></span>
-        <span class="fa-shopping-cart" data-ng-click="openCard()"></span>
-        <div class="cart-products" data-ng-class="cartShowClass" data-ng-if="productsInCard.length != 0">
-            <div class="cart-products-in" ng-style="cartHeight">
-                <div class="model-block-card" data-ng-repeat="productInCard in productsInCard">
+        <span class="cart-count" data-ng-bind="cartCount" data-ng-click="openCart()" data-ng-if="productsInCart.length != 0"></span>
+        <span class="fa-shopping-cart" data-ng-click="openCart()"></span>
+        <div class="cart-products" data-ng-class="cartShowClass" data-ng-if="productsInCart.length != 0">
+            <div class="cart-products-in" data-ng-style="cartHeight">
+                <div class="model-block-cart" data-ng-repeat="productInCart in productsInCart">
                     <div class="model-info">
-                        <img data-ng-src="{{ ::productInCard.image }}" alt="" />
-                        <b data-ng-bind="::productInCard.name"></b>
+                        <img data-ng-src="{{ ::productInCart.image }}" alt="" />
+                        <b data-ng-bind="::productInCart.name"></b>
                         <p>
-                            <span class="fa-minus" data-ng-class="productInCard.classMinus" data-ng-click="countMinus($index)"></span>
-                            <input type="text" class="count" title="" data-ng-value="productInCard.countProduct" min="1" max="99" readonly="readonly" />
-                            <span class="fa-plus" data-ng-class="productInCard.classPlus" data-ng-click="countPlus($index)"></span>
+                            <span class="fa-minus" data-ng-class="productInCart.classMinus" data-ng-click="countMinus($index)"></span>
+                            <input type="text" class="count" title="" data-ng-value="productInCart.countProduct" min="1" max="99" readonly="readonly" />
+                            <span class="fa-plus" data-ng-class="productInCart.classPlus" data-ng-click="countPlus($index)"></span>
                         </p>
                         <p>
-                            <span class="price" data-ng-bind="productInCard.price * productInCard.countProduct | currency"></span> + <span data-ng-bind="::productInCard.shipping | currency"></span> shipping
+                            <span class="price" data-ng-bind="productInCart.price * productInCart.countProduct | currency"></span> + <span data-ng-bind="::productInCart.shipping | currency"></span> shipping
                         </p>
                     </div>
-                    <span class="fa-remove" data-ng-click="delCard($index)"></span>
+                    <span class="fa-remove" data-ng-click="delCart($index)"></span>
                 </div>
                 <p class="cart-total">Total: <span class="price" data-ng-bind="cartTotal | currency"></span></p>
             </div>
@@ -52,6 +52,7 @@
 </header>
 
 <section class="models-list">
+    <h1>Smartphones</h1>
     <div class="model-block" data-ng-repeat="(pIndex, product) in products | filter:search as results">
         <div class="model-info">
             <a href="">
@@ -68,10 +69,10 @@
             Price: <span class="price" data-ng-bind="::product.price | currency"></span> + <span data-ng-bind="::product.shipping | currency"></span> shipping
         </div>
         <p class="model-cart">
-            <button data-ng-click="addCard($index)" data-ng-class="product.classButton"
+            <button data-ng-click="addToCart($index)" data-ng-class="product.classButton"
                     data-ng-disabled="product.disabled">
                 <span class="fa-cart-plus"></span>
-                <span data-ng-bind="product.cardTxt"></span>
+                <span data-ng-bind="product.cartTxt"></span>
             </button>
         </p>
         <div class="model-stock">
@@ -84,6 +85,7 @@
 </section>
 
 <script src="js/angular.min.js"></script>
+<script src="js/angular-cookies.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/controllers/mainController.js"></script>
 
