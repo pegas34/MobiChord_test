@@ -5,6 +5,8 @@ app.controller('mainController', function($scope) {
     $scope.min            = 1;
     $scope.max            = 25;
     $scope.disabled       = 'disabled';
+    $scope.cartShowClass  = 'hide';
+    $scope.cartHeight     = {};
 
     $scope.products       = [
         {
@@ -19,6 +21,42 @@ app.controller('mainController', function($scope) {
             price       : 680.99,
             shipping    : 12.99,
             left        : 9,
+            cardTxt     : 'Add to cart',
+            classButton : '',
+            disabled    : false
+        },
+        {
+            image       : 'img/moto1.jpg',
+            name        : 'Moto Z Play with Style Mod (Black, 32GB)',
+            infoList: [
+                {info : '13.97 centimeters (5.5-inch) super AMOLED 1080p full HD Display'},
+                {info : '2 GHz Octa-Core Qualcomm Snapdragon processor'},
+                {info : '3GB RAM, 32GB internal memory expandable up to 2TB'},
+                {info : '3510 mAh all day battery with TurboPower charging'},
+                {info : 'Android 6.0.1 Marshmallow'},
+                {info : '16 MP dual autofocus camera with laser focus, 5 MP front camera'}
+            ],
+            price       : 428.5,
+            shipping    : 12.98,
+            left        : 11,
+            cardTxt     : 'Add to cart',
+            classButton : '',
+            disabled    : false
+        },
+        {
+            image       : 'img/xiaomi1.jpg',
+            name        : 'Xiaomi Mi Max Prime (Gold, 128GB)',
+            infoList: [
+                {info : '16.35 centimeters (6.44-inch) IPS 2.5D glass capacitive touchscreen with 1920 x 1080 pixels resolution'},
+                {info : '64-bit Qualcomm Snapdragon core processor'},
+                {info : '4GB RAM, 128GB internal memory'},
+                {info : '4850 mAH lithium-polymer battery'},
+                {info : 'Android 6.0.1 Marshmallow OS with MIUI 8'},
+                {info : '16MP primary camera and 5MP front facing camera'}
+            ],
+            price       : 314.25,
+            shipping    : 12.98,
+            left        : 15,
             cardTxt     : 'Add to cart',
             classButton : '',
             disabled    : false
@@ -65,6 +103,7 @@ app.controller('mainController', function($scope) {
         item.classPlus    = '';
 
         $scope.productsInCard.push(item);
+        setCardHeight();
     };
 
     $scope.delCard = function(index) {
@@ -78,6 +117,10 @@ app.controller('mainController', function($scope) {
         $scope.productsInCard.splice(index, 1);
         $scope.cartCount = $scope.productsInCard.length;
         $scope.cartTotal = cartTotalSum($scope.productsInCard);
+        if ($scope.cartCount == 0) {
+            $scope.cartShowClass = 'hide';
+        }
+        setCardHeight();
     };
 
     $scope.countMinus = function(index) {
@@ -114,6 +157,25 @@ app.controller('mainController', function($scope) {
         }
 
         return false;
+    };
+
+    $scope.openCard = function() {
+        if ($scope.cartShowClass == 'hide' && $scope.productsInCard.length > 0) {
+            $scope.cartShowClass = 'show';
+            setCardHeight();
+        } else {
+            $scope.cartShowClass = 'hide';
+        }
+    };
+
+    var setCardHeight = function() {
+        var heightWindow = window.innerHeight - 90,
+            heightCard   = 103 * $scope.productsInCard.length + 70;
+        if (heightCard > heightWindow) {
+            $scope.cartHeight = {'height' : heightWindow + 'px'};
+        } else {
+            $scope.cartHeight = {};
+        }
     };
 
     var arrayObjectToString = function (array) {

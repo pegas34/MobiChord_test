@@ -17,6 +17,7 @@
         <ul>
             <li><a href="">Home</a></li>
             <li><a href="">News</a></li>
+            <li><a href="" class="active">Products</a></li>
             <li><a href="">Contacts</a></li>
         </ul>
     </nav>
@@ -24,32 +25,33 @@
         <span class="fa-search"></span>
         <input type="text" value="" title="" placeholder="Search by name or info" data-ng-model="searchInput" />
     </div>
-    <div class="shopping-cart">
-        <span class="fa-shopping-cart"></span>
-        <span class="cart-count" data-ng-bind="cartCount" data-ng-if="productsInCard.length != 0"></span>
-        <div class="cart-products" data-ng-if="productsInCard.length != 0">
-            <div class="model-block-card" data-ng-repeat="productInCard in productsInCard">
-                <div class="model-info">
-                    <img data-ng-src="{{ ::productInCard.image }}" alt="" />
-                    <b data-ng-bind="::productInCard.name"></b>
-                    <p>
-                        <span class="fa-minus" data-ng-class="productInCard.classMinus" data-ng-click="countMinus($index)"></span>
-                        <input type="text" class="count" title="" data-ng-value="productInCard.countProduct" min="1" max="99" readonly="readonly" />
-                        <span class="fa-plus" data-ng-class="productInCard.classPlus" data-ng-click="countPlus($index)"></span>
-                    </p>
-                    <p>
-                        <span class="price" data-ng-bind="productInCard.price * productInCard.countProduct | currency"></span> + <span data-ng-bind="::productInCard.shipping | currency"></span> shipping
-                    </p>
+    <div class="shopping-cart" data-ng-mouseenter="stopHide()" data-ng-mouseleave="startHide()">
+        <span class="cart-count" data-ng-bind="cartCount" data-ng-click="openCard()" data-ng-if="productsInCard.length != 0"></span>
+        <span class="fa-shopping-cart" data-ng-click="openCard()"></span>
+        <div class="cart-products" data-ng-class="cartShowClass" data-ng-if="productsInCard.length != 0">
+            <div class="cart-products-in" ng-style="cartHeight">
+                <div class="model-block-card" data-ng-repeat="productInCard in productsInCard">
+                    <div class="model-info">
+                        <img data-ng-src="{{ ::productInCard.image }}" alt="" />
+                        <b data-ng-bind="::productInCard.name"></b>
+                        <p>
+                            <span class="fa-minus" data-ng-class="productInCard.classMinus" data-ng-click="countMinus($index)"></span>
+                            <input type="text" class="count" title="" data-ng-value="productInCard.countProduct" min="1" max="99" readonly="readonly" />
+                            <span class="fa-plus" data-ng-class="productInCard.classPlus" data-ng-click="countPlus($index)"></span>
+                        </p>
+                        <p>
+                            <span class="price" data-ng-bind="productInCard.price * productInCard.countProduct | currency"></span> + <span data-ng-bind="::productInCard.shipping | currency"></span> shipping
+                        </p>
+                    </div>
+                    <span class="fa-remove" data-ng-click="delCard($index)"></span>
                 </div>
-                <span class="fa-remove" data-ng-click="delCard($index)"></span>
+                <p class="cart-total">Total: <span class="price" data-ng-bind="cartTotal | currency"></span></p>
             </div>
-            <p class="cart-total">Total: <span class="price" data-ng-bind="cartTotal | currency"></span></p>
         </div>
     </div>
 </header>
 
 <section class="models-list">
-
     <div class="model-block" data-ng-repeat="(pIndex, product) in products | filter:search as results">
         <div class="model-info">
             <a href="">
@@ -76,11 +78,9 @@
             Only <span class="stock-count" data-ng-bind="product.left"></span> left in stock
         </div>
     </div>
-
-    <div data-ng-if="results.length == 0">
+    <div class="no-results" data-ng-if="results.length == 0">
         No results found...
     </div>
-
 </section>
 
 <script src="js/angular.min.js"></script>

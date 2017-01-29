@@ -11,11 +11,15 @@ body {
     display: none !important;
 }
 header {
+    width: 100%;
     height: 50px;
     padding: 10px;
     background-color: $raven;
     box-sizing: border-box;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
 
     [class^='#{$fa-css-prefix}-'] {
         color: $white;
@@ -40,7 +44,7 @@ header {
             font-size: 14px;
             padding: 5px 5px 5px 28px;
             border-radius: 10px;
-            transition: 0.5s all;
+            transition: 0.5s width;
             outline: none;
 
             &:focus {
@@ -60,31 +64,76 @@ header {
         top: 14px;
         right: 35px;
 
-        .fa-shopping-cart {
+        .cart-count + .fa-shopping-cart {
             cursor: pointer;
+            transition: 0.3s color;
+
+            &:hover {
+                color: lighten($tahiti-gold, 10%);
+            }
         }
     }
     .cart-count {
         position: absolute;
-        top: -6px;
-        right: -9px;
+        top: -7px;
+        right: -11px;
         display: inline-block;
         padding: 1px 5px;
         background-color: $tahiti-gold;
         color: $white;
         font-size: 11px;
         border-radius: 10px;
+        cursor: pointer;
     }
     .cart-products {
         position: absolute;
-        right: 0;
+        top: 40px;
+        right: -20px;
         width: 320px;
         z-index: 1;
         background-color: $white;
         border: 1px solid $raven;
-        padding: 15px;
         box-shadow: 2px 3px 4px rgba($raven, 0.5);
         box-sizing: border-box;
+
+        &.hide {
+            display: none;
+        }
+        &.show {
+            display: block;
+            opacity: 0;
+            transform: translateY(20%);
+            animation: card-show 0.3s ease-out;
+            animation-fill-mode: both;
+        }
+
+        &:after,
+        &:before {
+            position: absolute;
+            bottom: 100%;
+            right: 30px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            pointer-events: none;
+        }
+        &:after {
+            right: 16px;
+            border: 12px solid transparent;
+            border-bottom-color: $white;
+            margin-left: -12px;
+        }
+        &:before {
+            right: 15px;
+            border: 13px solid transparent;
+            border-bottom-color: $raven;
+            margin-left: -13px;
+        }
+    }
+    .cart-products-in {
+        padding: 15px;
+        overflow-y: auto;
     }
     .model-block-card {
         padding-bottom: 15px;
@@ -128,6 +177,7 @@ header {
             vertical-align: middle;
             opacity: 0.5;
             cursor: pointer;
+            transition: 0.3s opacity;
 
             &:hover {
                 opacity: 1;
@@ -150,9 +200,10 @@ header {
             width: 16px;
             height: 16px;
             opacity: 0.5;
-            color: $dark-red;
+            color: $red;
             line-height: 16px;
             cursor: pointer;
+            transition: 0.3s opacity;
 
             &:hover {
                 opacity: 1;
@@ -193,7 +244,7 @@ header {
 .models-list {
     max-width: 700px;
     margin: 0 auto;
-    padding: 25px 30px;
+    padding: 75px 30px 25px;
 }
 .model-block {
     border: 1px solid lighten($raven, 25%);
@@ -211,11 +262,12 @@ header {
     }
     .model-info {
         @include clearfix();
-        padding: 0 130px;
+        padding: 10px 130px 0;
 
         a {
             text-decoration: none;
             color: $raven;
+            transition: 0.3s all;
 
             &:hover {
                 color: darken($raven, 10%);
@@ -224,7 +276,7 @@ header {
         }
         img {
             float: left;
-            margin: 0 0 0 -130px;
+            margin: -5px 0 0 -130px;
             width: 100px;
         }
     }
@@ -253,6 +305,7 @@ header {
         position: relative;
         cursor: pointer;
         outline: none;
+        transition: 0.3s background-color;
 
         .fa-cart-plus {
             position: absolute;
@@ -263,16 +316,43 @@ header {
             background-color: darken($tahiti-gold, 10%);
         }
         &.disabled{
-            background-color: $raven;
+            background-color: lighten($raven, 30%);
+            cursor: default;
         }
     }
     .model-stock {
         position: absolute;
-        top: 10px;
+        top: 8px;
         right: 10px;
-        font-size: 17px;
+        font-size: 16px;
         color: $bilbao;
+    }
+}
+.no-results {
+    color: $raven;
+    font-size: 30px;
+    font-weight: 600;
 
-        .stock-count {}
+    &:before {
+        content: '';
+        display: inline-block;
+        width: 95px;
+        height: 74px;
+        background: url('#{$img-path}/sad.jpg') -10px 50% no-repeat;
+        background-size: 100px;
+        opacity: 0.8;
+        vertical-align: middle;
+    }
+}
+
+@keyframes card-show {
+    0% {
+        display: block;
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
