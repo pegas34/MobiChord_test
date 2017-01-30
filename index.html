@@ -13,7 +13,7 @@
 <body data-ng-app="myApp" data-ng-controller="mainController">
 
 <header>
-    <nav data-ng-class="showMenu ? 'show-menu' : 'hide-menu'">
+    <nav class="hide-menu" data-ng-class="showMenu ? 'show-menu' : 'hide-menu'">
         <span class="fa-bars" data-ng-click="showMenu = !showMenu"></span>
         <ul>
             <li><a href="">Home</a></li>
@@ -26,10 +26,10 @@
         <span class="fa-search"></span>
         <input type="text" value="" title="" placeholder="Search by name or info" data-ng-model="searchInput" />
     </div>
-    <div class="shopping-cart" data-ng-mouseenter="stopHide()" data-ng-mouseleave="startHide()">
+    <div class="shopping-cart">
         <span class="cart-count" data-ng-bind="cartCount" data-ng-click="openCart()" data-ng-if="productsInCart.length != 0"></span>
         <span class="fa-shopping-cart" data-ng-click="openCart()"></span>
-        <div class="cart-products" data-ng-class="cartShowClass" data-ng-if="productsInCart.length != 0">
+        <div class="cart-products hide" data-ng-class="cartShowClass" data-ng-if="productsInCart.length != 0">
             <div class="cart-products-in" data-ng-style="cartHeight">
                 <div class="model-block-cart" data-ng-repeat="productInCart in productsInCart">
                     <div class="model-info">
