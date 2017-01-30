@@ -80,7 +80,7 @@
             Only <span class="stock-count" data-ng-bind="product.left"></span> left in stock
         </div>
     </div>
-    <div class="no-results" data-ng-if="results.length == 0">
+    <div class="no-results dnone" data-ng-class="results.length == 0 ? '' : 'dnone'">
         No results found...
     </div>
 </section>
